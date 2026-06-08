@@ -29,7 +29,6 @@ abstract class Controller
         $nota = Notas::find($id);
         return view('editar_nota', compact('nota'));
     }
-
     public function update(Request $request, $id)
     {
         $request->validate([
