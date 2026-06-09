@@ -7,11 +7,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/notas', [NotasController::class, 'index']);
+Route::get('/notas', [NotasController::class, 'index']);
 
-route::get('/crear_nota', [NotasController::class, 'create']);
+Route::get('/crear_nota', [NotasController::class, 'create']);
 
-route::post('/notas', [NotasController::class, 'store']);
+Route::post('/notas', [NotasController::class, 'store']);
 
 Route::delete('/notas/{id}', [NotasController::class, 'destroy']);
 

@@ -10,7 +10,9 @@ class NotasController extends Controller
     public function index()
     {
         $notas = Notas::all();
-        return view('notas', ['notas' => $notas]);
+        return view('notas', ['notas' => $notas]); /* Es un array asociativo con la clave 'notas' y el valor de la variable $notas,
+que contiene todas las notas recogidas por Notas:all(); De esta forma, se envían todas las notas a la vista 'notas' a través de $notas. 
+La clave del array ('notas') es el nombre con el que la vista podrá acceder a los datos. El valor ($notas) son los datos en sí.*/
     }
 
     public function create()
