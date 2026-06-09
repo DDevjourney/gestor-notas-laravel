@@ -13,21 +13,21 @@
             <a href="/crear_nota" class="btn btn-primary">+ Nueva nota</a>
         </div>
 
-        @foreach ($notas as $nota) // Recorre el array $notas y crea una variable $nota para cada elemento del array.
-            Cada $nota representa una nota individual.
+        @foreach ($notas as $nota)  {{-- Recorre el array $notas y crea una variable $nota para cada elemento del array.
+            Cada $nota representa una nota individual. --}}
             <div class="card mb-3 shadow-sm">
                 <div class="card-body">
-                    <h5 class="card-title">{{ $nota->titulo }}</h5> /* Accede al título de la nota usando $nota->titulo, ya
+                    <h5 class="card-title">{{ $nota->titulo }}</h5> {{-- Accede al título de la nota usando $nota->titulo, ya
                     que Eloquent convierte cada registro de la base de datos en un objeto,
                     y los campos de la tabla se pueden acceder como propiedades del objeto. Se puede acceder a estos campos
                     porque una de las migraciones define estos
-                    campos como propiedades del modelo. */
+                    campos como propiedades del modelo. . --}}
                     <p class="card-text text-muted">{{ $nota->contenido }}</p>
                     <div class="d-flex gap-2">
                         <a href="/notas/{{ $nota->id }}/edit" class="btn btn-sm btn-outline-secondary">Editar</a>
                         <form action="/notas/{{ $nota->id }}" method="POST">
-                            @csrf /* Es una directiva Blade que sustituye al PHP tradicional por una síntaxis más limpia. En este caso,
-                            genera un campo oculto con un token de seguridad para proteger contra ataques CSRF (Cross-Site Request Forgery). */
+                            @csrf {{-- Es una directiva Blade que sustituye al PHP tradicional por una síntaxis más limpia. En este caso,
+                            genera un campo oculto con un token de seguridad para proteger contra ataques CSRF (Cross-Site Request Forgery). --}}
                             @method('DELETE')
                             <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
                         </form>
