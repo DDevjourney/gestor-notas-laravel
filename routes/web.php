@@ -7,14 +7,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/notas', [NotasController::class, 'index']);
-
-Route::get('/crear_nota', [NotasController::class, 'create']);
-
-Route::post('/notas', [NotasController::class, 'store']);
-
-Route::delete('/notas/{id}', [NotasController::class, 'destroy']);
-
-Route::get('/notas/{id}/edit', [NotasController::class, 'edit']);
-
-Route::put('/notas/{id}', [NotasController::class, 'update']);
+Route::get('/notas', [NotasController::class, 'index'])->name('notas.index');
+Route::get('/crear_nota', [NotasController::class, 'create'])->name('notas.create');
+Route::post('/notas', [NotasController::class, 'store'])->name('notas.store');
+Route::delete('/notas/{id}', [NotasController::class, 'destroy'])->name('notas.destro');
+Route::get('/notas/{id}/edit', [NotasController::class, 'edit'])->name('notas.edit');
+Route::put('/notas/{id}', [NotasController::class, 'update'])->name('notas.update');
