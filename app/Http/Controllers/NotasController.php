@@ -22,8 +22,8 @@ La clave del array ('notas') es el nombre con el que la vista podrá acceder a l
     public function store(Request $request)
     {
         $request->validate([
-            'titulo' => 'required',
-            'contenido' => 'required'
+            'titulo' => 'required|string',
+            'contenido' => 'required\string'
         ]);
         Nota::create([
             'titulo' => $request->titulo,
