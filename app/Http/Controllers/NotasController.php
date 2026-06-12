@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Nota;
+use Illuminate\Support\Facades\Auth;
+
 
 class NotasController extends Controller
 {
     public function index()
     {
-        $notas = Nota::orderBy('created_at')->paginate(10);
+        $notas = Auth::user()->notas()->orderBy('created_at')->paginate(10);  // devuelve solo las notas de ese usuario->paginate(10);
         return view('notas', ['notas' => $notas]); /* Es un array asociativo con la clave 'notas' y el valor de la variable $notas,
 que contiene todas las notas recogidas por Notas:all(); De esta forma, se envían todas las notas a la vista 'notas' a través de $notas. 
 La clave del array ('notas') es el nombre con el que la vista podrá acceder a los datos. El valor ($notas) son los datos en sí.*/
@@ -28,20 +30,33 @@ La clave del array ('notas') es el nombre con el que la vista podrá acceder a l
         Nota::create([
             'titulo' => $request->titulo,
             'contenido' => $request->contenido,
+            'user_id' => Auth::id(),
         ]);
         return redirect('notas');
     }
     public function destroy(Nota $nota)
     {
+        if ($nota->user_id !== Auth::id()) {
+            abort(403);  // prohibido
+        }
         $nota->delete();
         return redirect('notas');
     }
+
+
     public function edit(Nota $nota)
     {
+        if ($nota->user_id !== Auth::id()) {
+            abort(403);  // prohibido
+        }
+
         return view('editar_nota', compact('nota'));
     }
     public function update(Request $request, Nota $nota)
     {
+        if ($nota->user_id !== Auth::id()) {
+            abort(403);  // prohibido
+        }
         $request->validate([
             'titulo' => 'required',
             'contenido' => 'required'

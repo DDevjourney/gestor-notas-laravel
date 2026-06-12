@@ -27,6 +27,12 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            
         ];
+        
     }
+    public function notas()
+{
+    return $this->hasMany(Nota::class);
+}
 }

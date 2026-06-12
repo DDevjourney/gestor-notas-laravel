@@ -20,7 +20,8 @@ class NotaFactory extends Factory
     {
         return [
             'titulo' => fake()->sentence(),
-            'contenido' => fake()->paragraph()
+            'contenido' => fake()->paragraph(),
+            'user_id' => \App\Models\User::factory(),
         ];
     }
 }
