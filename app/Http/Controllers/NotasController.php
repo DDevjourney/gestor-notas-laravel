@@ -42,8 +42,6 @@ La clave del array ('notas') es el nombre con el que la vista podrá acceder a l
         $nota->delete();
         return redirect('notas');
     }
-
-
     public function edit(Nota $nota)
     {
         if ($nota->user_id !== Auth::id()) {
